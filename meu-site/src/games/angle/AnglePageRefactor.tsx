@@ -20,7 +20,6 @@ function AnglePageRefactor() {
         if (currentGuess === null) return setError("Digite um número entre 0 - 360.");
         if (guesses.includes(currentGuess)) return setError(`Você já tentou ${currentGuess}!`);
         if (currentGuess > 360 || currentGuess < 0) return setError("Digite um número entre 0 - 360.");
-        const angle = (angleProps.endAngle - angleProps.startAngle + 360) % 360;
         if (currentGuess) setGuesses([...guesses, currentGuess]);
         setCurrentGuess(null);
     }

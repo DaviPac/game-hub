@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import { login as loginService, register as registerService } from "../services/AuthService";
+import { login as loginService } from "../services/AuthService";
 
 export type AuthProviderProps = {
     children: ReactNode;
