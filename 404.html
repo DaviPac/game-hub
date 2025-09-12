@@ -1,0 +1,8 @@
+<script type="text/javascript">
+    const path = window.location.pathname;
+
+    if (path !== '/game-hub/' && path !== '/game-hub/index.html') {
+        const redirectTo = path.replace('/game-hub', '').replace(/^\/+/, '');
+        window.location.href = '/game-hub/' + redirectTo + window.location.search + window.location.hash;
+    }
+</script>
