@@ -2,7 +2,7 @@ import { useState } from "react";
 import AngleDisplay from "./AngleDisplay";
 import { randomAngle } from "./useAngle";
 import AngleGuessRow from "./AngleGuessRow";
-import { FormError } from "../../components/FormError";
+import { FormError } from "../../components/Messages/FormErrror/FormError";
 
 function AnglePageRefactor() {
 

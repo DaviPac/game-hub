@@ -1,7 +1,7 @@
 import { GuessWord, randomWord, submitWord, wordExists } from "./useTermo";
 import { useState } from "react";
 import { TermoRow } from "./TermoRow";
-import { FormError } from "../../components/FormError";
+import { FormError } from "../../components/Messages/FormErrror/FormError";
 
 export function TermoPage() {
     const [finish, setFinish] = useState(false);

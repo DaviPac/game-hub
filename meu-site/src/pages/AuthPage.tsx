@@ -3,11 +3,11 @@ import styles from "./AuthPage.module.css";
 import { register } from "../services/AuthService";
 import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
-import HealthDisplay from "../components/HealthDisplay";
-import SuccessMessage from "../components/SuccessMessage";
-import { FormError } from "../components/FormError";
+import HealthDisplay from "../components/HealthDisplay/HealthDisplay";
+import SuccessMessage from "../components/Messages/SuccessMessage/SuccessMessage";
+import { FormError } from "../components/Messages/FormErrror/FormError";
 import { ApiHealth } from "../services/HealthService";
-import LoadingPopup from "../components/LoadingPopup";
+import LoadingPopup from "../components/LoadingPopup/LoadingPopup";
 
 export function Auth() {
     const login = useAuth()?.login;

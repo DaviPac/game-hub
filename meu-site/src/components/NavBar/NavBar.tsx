@@ -1,7 +1,7 @@
 import { Link } from "react-router"
-import { useAuth } from "../context/AuthContext"
+import { useAuth } from "../../context/AuthContext"
 import styles from "./NavBar.module.css"
-import HealthDisplay from "./HealthDisplay"
+import HealthDisplay from "./../HealthDisplay/HealthDisplay"
 
 export function NavBar() {
     const authContext = useAuth();

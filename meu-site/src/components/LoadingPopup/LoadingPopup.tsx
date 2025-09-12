@@ -1,6 +1,6 @@
-import Popup from "./Popup";
+import Popup from "../Popup/Popup";
 import styles from "./LoadingPopup.module.css";
-import LoadingGame from "../games/loadingGame/LoadingGame";
+import LoadingGame from "../../games/loadingGame/LoadingGame";
 
 export interface LoadingPopupProps {
     isLoading: boolean;

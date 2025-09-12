@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ApiHealth, usePingInterval } from "../services/HealthService";
+import { ApiHealth, usePingInterval } from "../../services/HealthService";
 import styles from "./HealthDisplay.module.css";
 
 interface HealthDisplayProps {
