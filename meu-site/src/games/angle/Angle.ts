@@ -1,4 +1,4 @@
-import type { AngleDisplayProps } from "./AngleDisplay";
+import type { AngleDisplayProps } from "./components/AngleDisplay";
 
 export function generateSingleAngle(angle = Math.floor(Math.random() * 360)) {
     return angle;

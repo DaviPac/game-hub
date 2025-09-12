@@ -1,6 +1,6 @@
-import { GuessWord, randomWord, submitWord, wordExists } from "./useTermo";
+import { GuessWord, randomWord, submitWord, wordExists } from "./Termo";
 import { useState } from "react";
-import { TermoRow } from "./TermoRow";
+import { TermoRow } from "./components/TermoRow";
 import { FormError } from "../../components/Messages/FormErrror/FormError";
 
 export function TermoPage() {

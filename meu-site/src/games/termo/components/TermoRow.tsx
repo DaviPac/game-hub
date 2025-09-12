@@ -1,4 +1,4 @@
-import { GuessLetter } from "./useTermo";
+import { GuessLetter } from "../Termo";
 import { TermoTile } from "./TermoTile";
 
 interface TermoRowProps {

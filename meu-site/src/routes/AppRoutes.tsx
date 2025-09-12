@@ -3,7 +3,7 @@ import { Auth } from "../pages/AuthPage"
 import { ProtectedRoute } from "../components/ProtectedRoute"
 import { HomePage } from "../pages/HomePage"
 import { TermoPage } from "../games/termo/TermoPage"
-import AnglePageRefactor from "../games/angle/AnglePageRefactor"
+import AnglePageRefactor from "../games/angle/AnglePage"
 import AdminPage from "../pages/AdminPage"
 
 export function AppRoutes() {
