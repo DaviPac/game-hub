@@ -1,8 +1,5 @@
 .fixedWeapon {
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
-    position: fixed;
-    bottom: 180px;
-    left: 200px;
     display: flex;
     align-items: center;
     gap: 0.5rem;

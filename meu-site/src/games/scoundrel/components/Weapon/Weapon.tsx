@@ -9,7 +9,6 @@ export interface WeaponProps {
 function Weapon({ gameState }: WeaponProps) {
     return (
         <div className={styles.fixedWeapon}>
-            <div className={styles.fixedWeapon}>
                 <span>⚔️</span>
                 {gameState.weapon && (
                     <>
@@ -19,7 +18,6 @@ function Weapon({ gameState }: WeaponProps) {
                         )}
                     </>
                 )}
-            </div>
         </div>
     )
 }
