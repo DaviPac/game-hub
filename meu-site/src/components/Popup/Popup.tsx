@@ -5,7 +5,7 @@ interface PopupProps {
   isOpen: boolean;
   onClose?: () => void;
   closable?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 function Popup({ isOpen, onClose, closable = true, children }: PopupProps) {

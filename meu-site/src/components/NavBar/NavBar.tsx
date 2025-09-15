@@ -13,6 +13,7 @@ export function NavBar() {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/termo">Termo</Link></li>
                     <li><Link to="/angle">Angle</Link></li>
+                    <li><Link to="/scoundrel">Scoundrel</Link></li>
                     <li><button onClick={authContext?.logout}>Sair</button></li>
                     <li><HealthDisplay /></li>
                 </ul>

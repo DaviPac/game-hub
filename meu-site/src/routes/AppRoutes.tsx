@@ -3,8 +3,9 @@ import { Auth } from "../pages/AuthPage"
 import { ProtectedRoute } from "../components/ProtectedRoute"
 import { HomePage } from "../pages/HomePage"
 import { TermoPage } from "../games/termo/TermoPage"
-import AnglePageRefactor from "../games/angle/AnglePage"
+import AnglePage from "../games/angle/AnglePage"
 import AdminPage from "../pages/AdminPage"
+import ScoundrelPage from "../games/scoundrel/ScoundrelPage"
 
 export function AppRoutes() {
     return <Routes>
@@ -21,12 +22,17 @@ export function AppRoutes() {
         } />
         <Route path="/angle" element={
             <ProtectedRoute>
-                <AnglePageRefactor />
+                <AnglePage />
             </ProtectedRoute>
         } />
         <Route path="/admin" element={
             <ProtectedRoute>
                 <AdminPage />
+            </ProtectedRoute>
+        } />
+        <Route path="/scoundrel" element={
+            <ProtectedRoute>
+                <ScoundrelPage />
             </ProtectedRoute>
         } />
     </Routes>

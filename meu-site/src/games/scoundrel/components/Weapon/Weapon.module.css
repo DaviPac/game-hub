@@ -1,0 +1,35 @@
+.fixedWeapon {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
+    position: fixed;
+    bottom: 180px;
+    left: 200px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    z-index: 10;
+    flex-direction: column;
+    min-width: 125px;
+    min-height: 215px;
+}
+
+.weaponCard {
+    border: 2px solid #f1c40f;
+    border-radius: 6px;
+    padding: 0.25rem;
+    background-color: #fff8dc;
+    transition: transform 0.3s ease;
+    position: relative; /* mantém dentro do fluxo */
+}
+
+.weaponLimitCard {
+    border: 2px solid #e67e22;
+    border-radius: 6px;
+    padding: 0.25rem;
+    background-color: #fff3e0;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    position: relative; /* mantém dentro do fluxo */
+    margin-top: -105px;
+}

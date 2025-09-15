@@ -4,7 +4,7 @@ import { randomAngle } from "./Angle";
 import AngleGuessRow from "./components/AngleGuessRow";
 import { FormError } from "../../components/Messages/FormErrror/FormError";
 
-function AnglePageRefactor() {
+function AnglePage() {
 
     const [angleProps] = useState(randomAngle());
 
@@ -53,4 +53,4 @@ function AnglePageRefactor() {
     );
 }
 
-export default AnglePageRefactor;
+export default AnglePage;

@@ -6,9 +6,9 @@ export type AuthProviderProps = {
 };
 
 type AuthContextType = {
-  user: string | null;
-  login: (username: string, password: string) => Promise<void>;
-  logout: () => void;
+    user: string | null;
+    login: (username: string, password: string) => Promise<void>;
+    logout: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);

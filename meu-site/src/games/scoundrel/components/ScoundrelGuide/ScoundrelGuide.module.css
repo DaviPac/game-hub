@@ -1,0 +1,36 @@
+.scoundrelGuide {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 1rem;
+    font-family: sans-serif;
+}
+
+.scoundrelGuide h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.scoundrelGuide .cardTypes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.card {
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: white;
+    width: fit-content;
+}
+
+.card.heal { background-color: #ff6b6b; }
+.card.monster { background-color: #4a4a4a; }
+.card.weapon { background-color: #f1c40f; color: black; }
+
+.rulesScroll {
+    max-height: 50vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}

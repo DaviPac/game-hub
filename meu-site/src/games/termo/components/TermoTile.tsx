@@ -1,4 +1,4 @@
-import { LetterLocation } from "./useTermo";
+import { LetterLocation } from "../Termo";
 import styles from "./TermoTile.module.css";
 
 interface TermoTileProps {
