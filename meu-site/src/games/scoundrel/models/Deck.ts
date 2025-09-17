@@ -4,10 +4,10 @@ export class Deck {
     cards: GameCard[] = new Array<GameCard>();
 
     constructor() {
-        const copas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 91];
-        const espadas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 92];
-        const ouros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 93];
-        const paus = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 94];
+        const copas = [2, 3, 4, 5, 6, 7, 8, 9, 10, 91];
+        const espadas = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 92];
+        const ouros = [2, 3, 4, 5, 6, 7, 8, 9, 10, 93];
+        const paus = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 94];
 
         const naipes = [copas, espadas, ouros, paus];
 

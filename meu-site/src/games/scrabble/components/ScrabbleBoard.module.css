@@ -1,0 +1,7 @@
+.board {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(15, 40px); /* 15 colunas de 40px cada */
+  grid-template-rows: repeat(15, 40px);    /* 15 linhas de 40px cada */
+  gap: 2px; /* espaço entre tiles */
+}

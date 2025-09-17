@@ -11,6 +11,12 @@ export class ScoundrelGame {
     hp: number;
     canRun: boolean;
     canHeal: boolean;
+    won: boolean;
+    lost: boolean;
+    gameOver: boolean;
+    started: boolean;
+    maxCards: number;
+    selectedCard: GameCard | null;
 
     constructor() {
         this.deck = new Deck();
@@ -20,14 +26,19 @@ export class ScoundrelGame {
         this.hp = 20;
         this.canRun = true;
         this.canHeal = true;
-
-        this.init();
+        this.won = false;
+        this.lost = false;
+        this.gameOver = false;
+        this.started = false;
+        this.maxCards = this.deck.length();
+        this.selectedCard = null;
     }
 
     init() {
         for (let i = 0; i < 4; i++) {
             this.dungeon.push(this.deck.pop());
         }
+        this.started = true;
     }
 
     useCard(cardIdx: number, useWeapon = true) {
@@ -63,11 +74,20 @@ export class ScoundrelGame {
                 if (!this.deck.length()) break;
                 this.dungeon.push(this.deck.pop());
             }
-            this.canHeal = true;
-            this.canRun = true;
+            if (this.dungeon.length > 1 ) {
+                this.canRun = true;
+                this.canHeal = true;
+            }
         }
 
-        console.log(this.hp);
+        if (this.dungeon.length === 0) {
+            this.gameOver = true;
+            this.won = true;
+        }
+        if (this.hp <= 0) {
+            this.gameOver = true;
+            this.lost = true;
+        }
     }
 
     flee() {
@@ -79,10 +99,9 @@ export class ScoundrelGame {
             this.dungeon.push(this.deck.pop());
         }
         this.canRun = false;
-        console.log("running");
     }
 
-    update() {
+    update(): ScoundrelGame {
         return Object.create(Object.getPrototypeOf(this), Object.getOwnPropertyDescriptors(this))
     }
 }

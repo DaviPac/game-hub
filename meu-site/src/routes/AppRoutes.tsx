@@ -6,6 +6,7 @@ import { TermoPage } from "../games/termo/TermoPage"
 import AnglePage from "../games/angle/AnglePage"
 import AdminPage from "../pages/AdminPage"
 import ScoundrelPage from "../games/scoundrel/ScoundrelPage"
+import ScrabblePage from "../games/scrabble/ScrabblePage"
 
 export function AppRoutes() {
     return <Routes>
@@ -33,6 +34,11 @@ export function AppRoutes() {
         <Route path="/scoundrel" element={
             <ProtectedRoute>
                 <ScoundrelPage />
+            </ProtectedRoute>
+        } />
+        <Route path="/scrabble" element={
+            <ProtectedRoute>
+                <ScrabblePage />
             </ProtectedRoute>
         } />
     </Routes>

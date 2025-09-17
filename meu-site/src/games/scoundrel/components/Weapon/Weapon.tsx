@@ -1,4 +1,4 @@
-import { ScoundrelGame } from "../../Scoundrel"
+import { ScoundrelGame } from "../../ScoundrelGame"
 import { Carta } from "../Carta/Carta"
 import styles from "./Weapon.module.css"
 

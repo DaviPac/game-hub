@@ -1,6 +1,5 @@
 import Popup from "../Popup/Popup";
 import styles from "./LoadingPopup.module.css";
-import LoadingGame from "../../games/loadingGame/LoadingGame";
 
 export interface LoadingPopupProps {
     isLoading: boolean;
@@ -13,7 +12,6 @@ function LoadingPopup({ isLoading, message = "Carregando..." }: LoadingPopupProp
             <div className={styles.container}>
                 <div className={styles.spinner}></div>
                 <p className={styles.message}>{message}</p>
-                {false && (<LoadingGame />)}
             </div>
         </Popup>
     )

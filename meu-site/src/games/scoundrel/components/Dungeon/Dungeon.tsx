@@ -1,4 +1,4 @@
-import type { ScoundrelGame } from "../../Scoundrel";
+import type { ScoundrelGame } from "../../ScoundrelGame";
 import { Carta } from "../Carta/Carta";
 import { Naipe } from "../../models/GameCard";
 import styles from "./Dungeon.module.css"
@@ -6,9 +6,10 @@ import styles from "./Dungeon.module.css"
 export interface DungeonProps {
     gameState: ScoundrelGame;
     setGameState: React.Dispatch<React.SetStateAction<ScoundrelGame>>;
+    useWeapon: boolean;
 }
 
-function Dungeon({ gameState, setGameState }: DungeonProps) {
+function Dungeon({ gameState, setGameState, useWeapon }: DungeonProps) {
     return (
         <div className={styles.container}>
             {gameState.dungeon.map((carta, idx) => (
@@ -21,7 +22,7 @@ function Dungeon({ gameState, setGameState }: DungeonProps) {
                     }`}
                     style={{ animationDelay: `${idx * 0.1}s` }}
                     onClick={() => {
-                        gameState.useCard(idx);
+                        gameState.useCard(idx, useWeapon);
                         setGameState(gameState.update());
                     }}
                 >

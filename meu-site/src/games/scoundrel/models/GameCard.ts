@@ -9,8 +9,9 @@ export class GameCard {
     public valor: number;
     public naipe: Naipe;
 
+
     constructor(valor: number, naipe: Naipe) {
-        if (valor > 13) valor = 13;
+        if (valor > 14) valor = 14;
         else if (valor < 1) valor = 1;
         this.valor = valor;
         this.naipe = naipe;

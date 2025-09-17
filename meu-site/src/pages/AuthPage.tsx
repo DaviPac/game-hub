@@ -11,7 +11,7 @@ import LoadingPopup from "../components/LoadingPopup/LoadingPopup";
 
 export function Auth() {
     const login = useAuth()?.login;
-    if (!login) return<>ERRO</>;
+    if (!login) return <>ERRO</>;
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -40,6 +40,7 @@ export function Auth() {
             }
             if (isRegister) {
                 const result = await register(name, username, password);
+                setIsLoading(false);
                 if (!result) {
                     setError("Já existe um usuário com este email");
                     return;
@@ -47,12 +48,14 @@ export function Auth() {
                 setSuccessMessage("Conta criada com sucesso!");
             }
             await login(username, password);
+            setIsLoading(false);
             navigate(from, { replace: true });
         }
         catch (error) {
+            setIsLoading(false);
             if (isRegister) setIsRegister(false);
-            else if (error instanceof Error) setError(error.message || "Email ou senha incorretos");
-            else setError("Email ou senha incorretos");
+            else if (error instanceof Error) setError(error.message ? error.message : "Username ou senha incorretos");
+            else setError("Username ou senha incorretos");
         }
     }
 

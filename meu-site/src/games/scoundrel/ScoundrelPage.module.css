@@ -5,5 +5,11 @@
 }
 
 .help {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
     margin: 10px;
+    border-radius: 20px;
+}
+
+.help:hover {
+    transform: scale(1.1);
 }

@@ -28,13 +28,13 @@ export function AuthProvider({children}: AuthProviderProps) {
     const login = async (username: string, password: string) => {
         try {
             const userData = await loginService(username, password);
-            if (!userData) throw Error;
+            if (!userData) throw new Error("Username ou senha incorretos");
             setUser(username);
             localStorage.setItem("userData", JSON.stringify(userData));
         }
         catch (error: unknown) {
             if (error instanceof Error) console.log("Erro no login: " + error.message);
-            throw error;
+            throw new Error("Erro do servidor, tente novamente");
         }
     };
 

@@ -1,4 +1,4 @@
-import type { ScoundrelGame } from "../../Scoundrel";
+import type { ScoundrelGame } from "../../ScoundrelGame";
 import styles from "./Actions.module.css"
 
 export interface ActionsProps {

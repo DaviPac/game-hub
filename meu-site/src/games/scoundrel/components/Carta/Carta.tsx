@@ -29,6 +29,7 @@ export function Carta({ carta, onClick = null, className = null, hover = false }
                      carta.valor === 11 ? "J" :
                      carta.valor === 12 ? "Q" :
                      carta.valor === 13 ? "K" :
+                     carta.valor === 14 ? "A" :
                      carta.valor.toString();
   const pass = () => null;
 

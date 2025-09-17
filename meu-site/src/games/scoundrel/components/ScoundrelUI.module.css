@@ -6,3 +6,32 @@
     font-family: sans-serif;
     position: relative;
 }
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  max-width: 400px;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.startButton {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: #f1c40f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.startButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.8);
+}

@@ -6,8 +6,11 @@
     background-color: #222;
     padding: 1rem 2rem;
     display: flex;
-    justify-content: center;
+    /* Alterado para alinhar o menu à direita no desktop */
+    justify-content: center; 
+    align-items: center;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 100; /* Garante que a navbar fique sobre outros elementos */
 }
 
 .navList {
@@ -16,6 +19,7 @@
     gap: 1.5rem;
     margin: 0;
     padding: 0;
+    align-items: center; /* Adicionado para melhor alinhamento vertical */
 }
 
 .navList li {
@@ -47,4 +51,52 @@
 
 .navList button:hover {
     background: #c0392b;
+}
+
+/* Esconde o botão hambúrguer em telas grandes */
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* --- ESTILOS PARA MOBILE --- */
+/* Usaremos 768px como ponto de quebra. Ajuste se necessário. */
+@media screen and (max-width: 768px) {
+    .navbar {
+        /* No mobile, o hambúrguer controla o alinhamento */
+        justify-content: flex-end; 
+    }
+
+    /* Mostra o botão hambúrguer */
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: 2rem; /* Alinha com o padding da navbar */
+    }
+
+    /* Esconde a lista de links por padrão */
+    .navList {
+        display: none; /* Esconde o menu por padrão */
+        flex-direction: column; /* Organiza os itens verticalmente */
+        position: absolute;
+        top: 100%; /* Começa logo abaixo da navbar */
+        left: 0;
+        width: 100%;
+        background-color: #333; /* Fundo para o menu aberto */
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+
+    /* Mostra a lista quando a classe .open é adicionada */
+    .navList.open {
+        display: flex;
+    }
+
+    .navList li {
+        width: 100%;
+        justify-content: center; /* Centraliza os itens do menu */
+    }
 }
