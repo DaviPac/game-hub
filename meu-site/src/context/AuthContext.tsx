@@ -30,7 +30,7 @@ export function AuthProvider({children}: AuthProviderProps) {
             const userData = await loginService(username, password);
             if (!userData) throw new Error("Username ou senha incorretos");
             setUser(username);
-            localStorage.setItem("userData", JSON.stringify(userData));
+            localStorage.setItem("userData", JSON.stringify(username));
         }
         catch (error: unknown) {
             if (error instanceof Error) console.log("Erro no login: " + error.message);

@@ -6,8 +6,10 @@ import PlayerRack from "./components/PlayerRack";
 function ScrabblePage() {
     const [scrabbleGame, setScrabbleGame] = useState(() => new ScrabbleGame());
     useEffect(() => {
-        scrabbleGame.setSelf = (gameState) => setScrabbleGame(gameState);
-        scrabbleGame.update();
+        ScrabbleGame.load(1).then((game) => {
+            game.setSelf = (gameState) => setScrabbleGame(gameState);
+            game.update();
+        });
     }, []);
     return (
         <div>
@@ -16,6 +18,7 @@ function ScrabblePage() {
             <button onClick={() => scrabbleGame.confirm() }>Confirmar</button>
             <PlayerRack gameState={scrabbleGame} />
             <span>{scrabbleGame.statusMessage}</span>
+            <span>{scrabbleGame.playerScore}</span>
         </div>
     )
 }

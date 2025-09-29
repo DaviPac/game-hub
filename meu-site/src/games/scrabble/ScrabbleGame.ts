@@ -1,5 +1,7 @@
 import Multiplier, { MultiplierType, centro, comum, palavraDupla, palavraTripla, letraDupla, letraTripla } from "./models/Multiplier";
 import Letra from "./models/Letra";
+import wordslist from "./wordlist.txt?raw";
+import * as api from "../../api/api"
 
 export class PreviewTile {
     letra: Letra;
@@ -13,12 +15,18 @@ export class PreviewTile {
     }
 }
 
-// Função mockada para simular a verificação no dicionário
+export function loadWordList() {
+    return wordslist
+        .split(/\r?\n/)
+        .map(w => w.trim())
+        .filter(Boolean)
+        .map(w => w.toUpperCase());
+}
+
 function checkDictionary(word: string) {
     console.log(`Verificando a palavra: "${word}"...`);
-    // Em uma implementação real, esta função faria uma consulta a um dicionário.
-    // Para este exemplo, vamos assumir que todas as palavras são válidas.
-    return true;
+    const words = loadWordList();
+    return words.some(w => w === word);
 }
 
 class ScrabbleGame {
@@ -26,11 +34,14 @@ class ScrabbleGame {
     board: (Letra | null)[][];
     selectedTile: Letra | null;
     previewBoard: PreviewTile[];
-    playerRack: Letra[];
-    isFirstMove: boolean;
+    playerRack: Letra[] = new Array<Letra>();
     statusMessage: string;
     playerScore: number;
     setSelf: (scrabbleGame: ScrabbleGame) => any = () => null;
+    letterBag: Letra[] = new Array<Letra>();
+    players: number[] = new Array<number>();
+    turn: number;
+    id: number = 1;
 
     constructor() {
         this.boardMultipliers = [
@@ -54,10 +65,65 @@ class ScrabbleGame {
         this.board = Array(15).fill(null).map(() => Array(15).fill(null));
         this.selectedTile = null;
         this.previewBoard = [];
-        this.playerRack = [Letra.A, Letra.C, Letra.A, Letra.D, Letra.A, Letra.C, Letra.D, Letra.E, Letra.F]; // Rack inicial para teste
-        this.isFirstMove = true;
         this.statusMessage = "Bem vindo ao jogo de Scrabble!";
         this.playerScore = 0;
+
+        for (let i = 0; i < Letra.aAmount; i++) this.letterBag.push(Letra.A);
+        for (let i = 0; i < Letra.bAmount; i++) this.letterBag.push(Letra.B);
+        for (let i = 0; i < Letra.cAmount; i++) this.letterBag.push(Letra.C);
+        for (let i = 0; i < Letra.dAmount; i++) this.letterBag.push(Letra.D);
+        for (let i = 0; i < Letra.eAmount; i++) this.letterBag.push(Letra.E);
+        for (let i = 0; i < Letra.fAmount; i++) this.letterBag.push(Letra.F);
+        for (let i = 0; i < Letra.gAmount; i++) this.letterBag.push(Letra.G);
+        for (let i = 0; i < Letra.hAmount; i++) this.letterBag.push(Letra.H);
+        for (let i = 0; i < Letra.iAmount; i++) this.letterBag.push(Letra.I);
+        for (let i = 0; i < Letra.jAmount; i++) this.letterBag.push(Letra.J);
+        for (let i = 0; i < Letra.lAmount; i++) this.letterBag.push(Letra.L);
+        for (let i = 0; i < Letra.mAmount; i++) this.letterBag.push(Letra.M);
+        for (let i = 0; i < Letra.nAmount; i++) this.letterBag.push(Letra.N);
+        for (let i = 0; i < Letra.oAmount; i++) this.letterBag.push(Letra.O);
+        for (let i = 0; i < Letra.pAmount; i++) this.letterBag.push(Letra.P);
+        for (let i = 0; i < Letra.qAmount; i++) this.letterBag.push(Letra.Q);
+        for (let i = 0; i < Letra.rAmount; i++) this.letterBag.push(Letra.R);
+        for (let i = 0; i < Letra.sAmount; i++) this.letterBag.push(Letra.S);
+        for (let i = 0; i < Letra.tAmount; i++) this.letterBag.push(Letra.T);
+        for (let i = 0; i < Letra.uAmount; i++) this.letterBag.push(Letra.U);
+        for (let i = 0; i < Letra.vAmount; i++) this.letterBag.push(Letra.V);
+        for (let i = 0; i < Letra.xAmount; i++) this.letterBag.push(Letra.X);
+        for (let i = 0; i < Letra.zAmount; i++) this.letterBag.push(Letra.Z);
+
+        this.fillPlayerRack();
+        this.turn = 0;
+
+    }
+
+    get isFirstMove() { return this.turn === 0; }
+
+    static async load(gameId: number) {
+        const response = await api.getScrabbleGame(gameId);
+        const game = new ScrabbleGame();
+        game.board = response.board;
+        game.turn = response.turn;
+        game.playerRack = response.playerRack;
+        game.playerScore = response.playerScore;
+        game.letterBag = response.letterBag;
+        game.players = response.players;
+        return game;
+    }
+
+    async save() {
+        const response = await api.saveScrabbleGame(this);
+        if (!false) this.statusMessage = "Erro de servidor completar jogada, tente novamente.";
+        else this.statusMessage = "Jogada concluída com sucesso!";
+        this.update();
+    }
+
+    fillPlayerRack() {
+        while (this.playerRack.length < 8 && this.letterBag.length) {
+            const index = Math.floor(Math.random() * 100) % this.letterBag.length;
+            this.playerRack.push(this.letterBag[index]);
+            this.letterBag.splice(index, 1);
+        }
     }
 
     update() {
@@ -112,14 +178,14 @@ class ScrabbleGame {
             }
 
             wordScore += letterScore;
+            console.log(`${tile.letra.char}: ${tile.letra.value} + `);
         }
+
+        console.log(`${wordScore} * ${wordMultiplier}`);
 
         return wordScore * wordMultiplier;
     }
 
-    /**
-     * Valida e confirma a jogada atual no previewBoard.
-     */
     confirm() {
         if (this.previewBoard.length === 0) {
             this.statusMessage = "Nenhuma peça foi colocada no tabuleiro.";
@@ -127,7 +193,6 @@ class ScrabbleGame {
             return;
         }
 
-        // --- 1. Determinar a orientação da jogada ---
         const rows = new Set(this.previewBoard.map(p => p.row));
         const cols = new Set(this.previewBoard.map(p => p.col));
         const isHorizontal = rows.size === 1;
@@ -139,14 +204,12 @@ class ScrabbleGame {
             return;
         }
 
-        // --- 2. Ordenar as peças e obter a linha/coluna da jogada ---
         if (isHorizontal) this.previewBoard.sort((a, b) => a.col - b.col);
         else this.previewBoard.sort((a, b) => a.row - b.row);
         
         const mainRow = this.previewBoard[0].row;
         const mainCol = this.previewBoard[0].col;
 
-        // --- 3. Validações específicas da primeira jogada ---
         if (this.isFirstMove) {
             if (this.previewBoard.length < 2) {
                 this.statusMessage = "A primeira jogada deve ter pelo menos 2 letras.";
@@ -160,22 +223,18 @@ class ScrabbleGame {
             }
         }
 
-        // --- 4. Encontrar todas as palavras formadas pela jogada ---
 
         const allWordsData: { letra: Letra, row: number, col: number }[][] = [];
         let touchesExistingTile = false;
 
-        // Função auxiliar para obter a letra em uma posição, considerando o preview e o tabuleiro
         const getLetterAt = (r: number, c: number): Letra | null => {
             const preview = this.findPreview(r, c);
             return preview ? preview.letra : this.board[r][c];
         }
 
-        // 4a. Encontrar a palavra principal
         let start = isHorizontal ? mainCol : mainRow;
         let end = isHorizontal ? this.previewBoard[this.previewBoard.length - 1].col : this.previewBoard[this.previewBoard.length - 1].row;
 
-        // Expande para encontrar a palavra completa, incluindo letras já no tabuleiro
         while (start > 0 && getLetterAt(isHorizontal ? mainRow : start - 1, isHorizontal ? start - 1 : mainCol)) start--;
         while (end < 14 && getLetterAt(isHorizontal ? mainRow : end + 1, isHorizontal ? end + 1 : mainCol)) end++;
         
@@ -189,7 +248,6 @@ class ScrabbleGame {
                 mainWordData.push({ letra: letter, row, col })
                 if (!this.findPreview(row, col)) touchesExistingTile = true;
             } else {
-                // Se houver um buraco na palavra principal, a jogada é inválida
                 this.statusMessage = "A palavra principal não pode ter buracos.";
                 this.update();
                 return;
@@ -198,12 +256,10 @@ class ScrabbleGame {
         if (!this.isFirstMove && mainWordData.length > 1 && mainWordData.length == this.previewBoard.length) { this.statusMessage = "A palavra deve cruzar com outra existente"; this.update(); return; }
         if (mainWordData.length > 1) allWordsData.push(mainWordData);
 
-        // 4b. Encontrar palavras secundárias (perpendiculares à jogada)
         for (const tile of this.previewBoard) {
             const secondaryWordData: { letra: Letra, row: number, col: number }[] = [{letra: tile.letra, row: tile.row, col: tile.col}];
             let start = isHorizontal ? tile.row : tile.col;
 
-            // Procura para cima/esquerda
             for (let i = start - 1; i >= 0; i--) {
                 const r = isHorizontal ? i : tile.row;
                 const c = isHorizontal ? tile.col : i;
@@ -212,7 +268,7 @@ class ScrabbleGame {
                 secondaryWordData.unshift({ letra: letter, row: r, col: c })
                 touchesExistingTile = true;
             }
-            // Procura para baixo/direita
+
             for (let i = start + 1; i < 15; i++) {
                 const r = isHorizontal ? i : tile.row;
                 const c = isHorizontal ? tile.col : i;
@@ -225,7 +281,6 @@ class ScrabbleGame {
             if (secondaryWordData.length > 1) allWordsData.push(secondaryWordData);
         }
 
-        // --- 5. Validar conexão para jogadas subsequentes ---
         if (!this.isFirstMove && !touchesExistingTile) {
             this.statusMessage = "Sua jogada deve se conectar a pelo menos uma peça já existente.";
             this.update();
@@ -246,14 +301,12 @@ class ScrabbleGame {
             validatedWordStrings.push(word);
         }
 
-        // --- 7. Se tudo for válido, confirmar a jogada ---
         this.previewBoard.forEach(tile => this.board[tile.row][tile.col] = tile.letra);
         this.previewBoard = [];
-        this.isFirstMove = false;
+        this.turn++;
         this.statusMessage = `Jogada confirmada! +${totalMoveScore} pontos. Palavras formadas:${validatedWordStrings.join(", ")}.`;
         this.playerScore += totalMoveScore;
-        
-        // TODO: Calcular pontos e reabastecer o rack do jogador.
+        this.fillPlayerRack();
 
         this.update();
     }
