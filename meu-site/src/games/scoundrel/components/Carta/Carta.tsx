@@ -10,7 +10,7 @@ interface CartaProps {
 
 const naipeColors: Record<Naipe, string> = {
   [Naipe.Copas]: "#c62828",
-  [Naipe.Ouros]: "#d84315",
+  [Naipe.Ouros]: "#f1c40f",
   [Naipe.Paus]: "#1a1410",
   [Naipe.Espadas]: "#1a1410",
 };
