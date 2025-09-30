@@ -113,12 +113,14 @@ class ScrabbleGame {
 
     async save() {
         const response = await api.saveScrabbleGame(this);
+        console.log(response);
         if (!false) this.statusMessage = "Erro de servidor completar jogada, tente novamente.";
         else this.statusMessage = "Jogada concluída com sucesso!";
         this.update();
     }
 
     fillPlayerRack() {
+        console.log(this.letterBag.length);
         while (this.playerRack.length < 8 && this.letterBag.length) {
             const index = Math.floor(Math.random() * 100) % this.letterBag.length;
             this.playerRack.push(this.letterBag[index]);

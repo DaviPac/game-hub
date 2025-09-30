@@ -52,14 +52,6 @@ export async function getScrabbleGame(int: number) {
 }
 
 export async function saveScrabbleGame(game: ScrabbleGame) {
-    const response = await fetch("https://fly-api-proud-surf-8927.fly.dev/scrabble/save", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: {
-            'gameId': game.id,
-
-        }
-    })
+    console.log(game);
+    return true;
 }

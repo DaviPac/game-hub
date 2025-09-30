@@ -6,10 +6,8 @@ import PlayerRack from "./components/PlayerRack";
 function ScrabblePage() {
     const [scrabbleGame, setScrabbleGame] = useState(() => new ScrabbleGame());
     useEffect(() => {
-        ScrabbleGame.load(1).then((game) => {
-            game.setSelf = (gameState) => setScrabbleGame(gameState);
-            game.update();
-        });
+            scrabbleGame.setSelf = (gameState) => setScrabbleGame(gameState);
+            scrabbleGame.update();
     }, []);
     return (
         <div>

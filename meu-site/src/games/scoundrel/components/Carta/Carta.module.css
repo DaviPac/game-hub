@@ -188,7 +188,8 @@
   font-size: 26px;
   font-weight: bold;
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
+  left: 28px;
   z-index: 3;
 }
 
