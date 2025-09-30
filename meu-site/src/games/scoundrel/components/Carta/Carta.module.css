@@ -1,60 +1,209 @@
+/* Carta.module.css */
+
+.container {
+  display: inline-block;
+}
+
 .carta {
   width: 80px;
   height: 120px;
-  border: 1px solid #000;
+  border: 2.5px solid #b8936f;
   border-radius: 8px;
-  background-color: white;
+  background: linear-gradient(135deg, #faf8f3 0%, #f0ebe0 50%, #e8dcc8 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 5px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-  font-family: 'Arial', sans-serif;
+  padding: 0;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Georgia', serif;
   position: relative;
   user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Brilho sutil no topo */
+.carta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 1;
 }
 
 .cartaHover {
   width: 80px;
   height: 120px;
-  border: 1px solid #000;
+  border: 2.5px solid #b8936f;
   border-radius: 8px;
-  background-color: white;
+  background: linear-gradient(135deg, #faf8f3 0%, #f0ebe0 50%, #e8dcc8 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 5px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-  font-family: 'Arial', sans-serif;
+  padding: 0;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Georgia', serif;
   position: relative;
   user-select: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.cartaHover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 1;
 }
 
 .cartaHover:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 12px rgba(0,0,0,0.5);
+  transform: translateY(-20px) scale(1.08) rotateZ(3deg);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(255, 204, 128, 0.3);
+  border-color: #d4a574;
+}
+
+.cornerDecoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .topLeft {
   position: absolute;
-  top: 5px;
-  left: 5px;
-  font-size: 14px;
+  top: 10px;
+  left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+}
+
+.rankText {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.suitText {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .bottomRight {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
-  font-size: 14px;
+  bottom: 10px;
+  right: 10px;
+  font-size: 18px;
+  font-weight: bold;
   transform: rotate(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
 }
 
 .center {
-  font-size: 32px;
+  font-size: 48px;
   text-align: center;
   flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Estilos para cartas de figura */
+.faceCardContainer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.ornamentCircle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centerLarge {
+  font-size: 70px;
+  font-weight: bold;
+  z-index: 3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.smallOrnaments {
+  position: absolute;
+  width: 100%;
+  top: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 25px;
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+.ornamentLeft,
+.ornamentRight {
+  font-size: 12px;
+}
+
+.faceSvg {
+  width: 80px;
+  height: 100px;
+  position: absolute;
+}
+
+.faceSymbol {
+  font-size: 26px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 10px;
+  z-index: 3;
+}
+
+/* Padrão decorativo opcional no fundo */
+@keyframes subtle-shine {
+  0%, 100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+/* Animação sutil de brilho */
+.carta:hover::after,
+.cartaHover:hover::after {
+  animation: subtle-shine 2s ease-in-out infinite;
 }

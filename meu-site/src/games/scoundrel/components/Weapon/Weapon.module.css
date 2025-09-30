@@ -9,23 +9,19 @@
     flex-direction: column;
     min-width: 125px;
     min-height: 215px;
+    border: 2px solid #6d6d6d;
 }
 
 .weaponCard {
-    border: 2px solid #f1c40f;
     border-radius: 6px;
     padding: 0.25rem;
-    background-color: #fff8dc;
     transition: transform 0.3s ease;
     position: relative; /* mantém dentro do fluxo */
 }
 
 .weaponLimitCard {
-    border: 2px solid #e67e22;
     border-radius: 6px;
     padding: 0.25rem;
-    background-color: #fff3e0;
-    transform: scale(0.95);
     transition: transform 0.3s ease;
     position: relative; /* mantém dentro do fluxo */
     margin-top: -105px;
