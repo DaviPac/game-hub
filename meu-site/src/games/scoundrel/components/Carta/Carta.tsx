@@ -29,7 +29,7 @@ const NaipeSVG = ({ naipe, size = 24 }: { naipe: Naipe; size?: number }) => {
   
   if (naipe === Naipe.Ouros) {
     return (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill={cor}>
+      <svg width={size} height={size} viewBox="0 0 24 24" fill={cor} transform="scale(0.7, 1)">
         <path d="M12 2L2 12l10 10 10-10L12 2z"/>
       </svg>
     );
@@ -37,7 +37,7 @@ const NaipeSVG = ({ naipe, size = 24 }: { naipe: Naipe; size?: number }) => {
   
   if (naipe === Naipe.Paus) {
     return (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill={cor}>
+      <svg width={size} height={size} viewBox="0 0 24 24" fill={cor} transform="scale(1.5)">
         <circle cx="12" cy="10" r="3.5"/>
         <circle cx="9" cy="14" r="3.5"/>
         <circle cx="15" cy="14" r="3.5"/>
@@ -90,11 +90,11 @@ const renderFaceCard = (valor: number, naipe: Naipe, cor: string) => {
           <circle cx="40" cy="40" r="31" fill="none" stroke={cor} strokeWidth="0.8" opacity="0.2"/>
         </svg>
         <div className={styles.centerLarge}>
-          <NaipeSVG naipe={naipe} size={70} />
+          <NaipeSVG naipe={naipe} size={40} />
         </div>
         <div className={styles.smallOrnaments}>
-          <span className={styles.ornamentLeft}><NaipeSVG naipe={naipe} size={12} /></span>
-          <span className={styles.ornamentRight}><NaipeSVG naipe={naipe} size={12} /></span>
+          <span className={styles.ornamentLeft}><NaipeSVG naipe={naipe} size={11} /></span>
+          <span className={styles.ornamentRight}><NaipeSVG naipe={naipe} size={11} /></span>
         </div>
       </div>
     );

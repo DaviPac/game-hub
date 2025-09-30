@@ -41,7 +41,7 @@ function ScoundrelUI() {
             {useWeapon && <div className={styles.weapon}><Weapon gameState={gameState} /></div>}
 
             <Actions gameState={gameState} setGameState={setGameState} />
-            <button onClick={() => setUseWeapon(!useWeapon)}>toggleWeapon</button>
+            <button onClick={() => setUseWeapon(!useWeapon)}>{useWeapon ? "Desequipar arma" : "Equipar arma"}</button>
             
         </div>
     );

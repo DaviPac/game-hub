@@ -165,10 +165,10 @@
 .smallOrnaments {
   position: absolute;
   width: 100%;
-  top: 20px;
+  top: 30px;
   display: flex;
   justify-content: space-between;
-  padding: 0 25px;
+  padding: 0 27px;
   font-size: 12px;
   opacity: 0.4;
 }
